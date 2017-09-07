@@ -40,3 +40,15 @@ class TestBody(unittest.TestCase):
         expected_x = 66.7
         expected_y = 0
         self.assertTrue(expected_x - result.x < 10e-5 and expected_y - result.y < 10e-5)
+
+    def test_set_resulting_gravitational_force(self):
+        body1 = Body(Vector2(0, 0), Vector2(0, 0), 10e7)
+        body2 = Body(Vector2(1, 0), Vector2(0, 0), 10e7)
+        body3 = Body(Vector2(0, 1), Vector2(0, 0), 10e7)
+        bodies = [body1, body2, body3]
+
+        body1.set_resulting_gravitational_force(bodies)
+        result = body1.resulting_force
+        expected_x = 66.7
+        expected_y = 66.7
+        self.assertTrue(expected_x - result.x < 10e-5 and expected_y - result.y < 10e-5)
