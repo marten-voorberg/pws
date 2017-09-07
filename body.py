@@ -18,7 +18,6 @@ class Body:
         # F_res = m / a
         acceleration = resulting_force / self.mass
         delta_velocity = acceleration * dt
-        print(delta_velocity)
         self.velocity += delta_velocity
 
     def get_gravitational_force_to(self, other_body):

@@ -8,14 +8,22 @@ from physics.vector2 import Vector2
 
 a = Body(Vector2(1, 1), Vector2(1, 0), 10e10)
 b = Body(Vector2(-1, -1), Vector2(-1, 0), 10e10)
-
+# c = Body(Vector2(1, -1), Vector2(0, 1), 10e10)
+# d = Body(Vector2(-1, 1), Vector2(1, 0), 10e10)
 a_x = []
 a_y = []
 b_x = []
 b_y = []
+# c_x = []
+# c_y = []
+# d_x = []
+# d_y = []
 
-dt = 24 * 60 * 60 * 10e10
-simulated_time = dt * 500
+
+# dt = 24 * 60 * 60
+dt = 0.01
+# simulated_time = dt * 100
+simulated_time = 8
 elapsed_time = 0
 bodies = [a, b]
 
@@ -41,12 +49,19 @@ while elapsed_time < simulated_time:
     # Debugging only
     a_x.append(a.position.x)
     a_y.append(a.position.y)
+    b_x.append(b.position.x)
+    b_y.append(b.position.y)
+    # c_x.append(c.position.x)
+    # c_y.append(c.position.y)
+    # d_x.append(d.position.x)
+    # d_y.append(d.position.y)
 
     # TODO: Write the positions of the objects to a file
 
     elapsed_time += dt
 
-plt.plot(a_x, a_y)
+plt.plot(a_x, a_y, b_x, b_y)
+# plt.plot(a_x, a_y, b_x, b_y, c_x, c_y, d_x, d_y)
 plt.show()
 
 # for i in range(500):
