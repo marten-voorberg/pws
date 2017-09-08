@@ -5,6 +5,7 @@ from graph import show_graph
 
 
 def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
+    print('Getting input from {}'.format(input_file_path))
     bodies = get_bodies_from_file(input_file_path)
     elapsed_time = 0
 
@@ -24,14 +25,18 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
         log_body_positions(output_file_path, bodies)
 
         elapsed_time += dt
-        print('Seconds Simulated: {}'.format(elapsed_time))
+        percentage = int(elapsed_time / simulated_time * 100)
+        print('Seconds Simulated: {}. {}% done'.format(elapsed_time, percentage))
 
 
-def Main():
-    input_file_path = 'input/2body.txt'
-    output_file_path = 'output/2body.txt'
+def main():
+    input_file_path = 'input/solarsystem2.txt'
+    output_file_path = 'output/solarsystemA.txt'
+    dt = 0.005
+    # simulated_time = dt * 433 * 2 + 1
+    simulated_time = dt * 900 * 10
 
-    simulate(input_file_path, output_file_path)
+    simulate(input_file_path, output_file_path, dt, simulated_time)
 
     x_and_y_lists = get_positions_array_from_file(output_file_path)
     x_lists = x_and_y_lists[0]
@@ -39,4 +44,4 @@ def Main():
     show_graph(x_lists, y_lists)
 
 if __name__ == '__main__':
-    Main()
+    main()
