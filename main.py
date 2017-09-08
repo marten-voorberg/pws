@@ -1,26 +1,25 @@
 from body import Body
 from physics.vector2 import Vector2
 from log import *
+from read_input import get_bodies_from_file
 
 # Animation and Graphs
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
-a = Body(Vector2(1, 1), Vector2(1, 0), 10e10)
-b = Body(Vector2(-1, -1), Vector2(-1, 0), 10e10)
-a_x = []
-a_y = []
-b_x = []
-b_y = []
+# a = Body(Vector2(1, 1), Vector2(1, 0), 10e10)
+# b = Body(Vector2(-1, -1), Vector2(-1, 0), 10e10)
 
-file_path = 'output/temp.txt'
+file_path = 'output/4body.txt'
+input_path = 'input/4body.txt'
 # dt = 24 * 60 * 60
-dt = 0.1
+dt = 0.01
 # simulated_time = dt * 100
-simulated_time = 30
+simulated_time = 1
 elapsed_time = 0
-bodies = [a, b]
+# bodies = [a, b]
+bodies = get_bodies_from_file(input_path)
 
 # sun = Body(Vector2(0, 0), Vector2(0, 0), 1.989e30)
 # earth = Body(Vector2(149.6e9, 0), Vector2(0, 30e5), 5.972e24)
@@ -40,12 +39,6 @@ while elapsed_time < simulated_time:
     for body in bodies:
         body.update_velocity(body.resulting_force, dt)
         body.update_position(dt)
-
-    # Debugging only
-    a_x.append(a.position.x)
-    a_y.append(a.position.y)
-    b_x.append(b.position.x)
-    b_y.append(b.position.y)
 
     log_body_positions(file_path, bodies)
 

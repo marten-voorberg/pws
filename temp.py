@@ -1,12 +1,5 @@
-from log import init_file
-from body import Body
-from physics.vector2 import Vector2
+from read_log import *
+from graph import *
 
-filepath = 'output/temp.txt'
-bodies = [
-        Body(Vector2(0, 0), Vector2(0, 0), 10),
-        Body(Vector2(0, 0), Vector2(0, 0), 20),
-        Body(Vector2(0, 0), Vector2(0, 0), 30)
-]
-
-init_file(filepath, bodies)
+result = get_positions_array_from_file('output/4body.txt')
+show_graph(result[0], result[1])
