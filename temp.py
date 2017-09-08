@@ -1,15 +1,12 @@
-from physics.forces import calc_gravitational_force
+from log import init_file
+from body import Body
+from physics.vector2 import Vector2
 
+filepath = 'output/temp.txt'
+bodies = [
+        Body(Vector2(0, 0), Vector2(0, 0), 10),
+        Body(Vector2(0, 0), Vector2(0, 0), 20),
+        Body(Vector2(0, 0), Vector2(0, 0), 30)
+]
 
-distance = 149.6e9
-mass1 = 1e30
-mass2 = 1e24
-
-print(calc_gravitational_force(mass1, mass2, distance))
-
-# from physics.vector2 import Vector2
-#
-# a = Vector2(3, 4)
-# b = Vector2(4, 5)
-#
-# print(a.calc_distance_to(b))
+init_file(filepath, bodies)
