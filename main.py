@@ -1,74 +1,42 @@
-from body import Body
-from physics.vector2 import Vector2
 from log import *
 from read_input import get_bodies_from_file
-
-# Animation and Graphs
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+from read_log import get_positions_array_from_file
+from graph import show_graph
 
 
-# a = Body(Vector2(1, 1), Vector2(1, 0), 10e10)
-# b = Body(Vector2(-1, -1), Vector2(-1, 0), 10e10)
+def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
+    bodies = get_bodies_from_file(input_file_path)
+    elapsed_time = 0
 
-file_path = 'output/4body.txt'
-input_path = 'input/4body.txt'
-# dt = 24 * 60 * 60
-dt = 0.01
-# simulated_time = dt * 100
-simulated_time = 1
-elapsed_time = 0
-# bodies = [a, b]
-bodies = get_bodies_from_file(input_path)
+    init_file(output_file_path, bodies)
+    log_body_positions(output_file_path, bodies)
 
-# sun = Body(Vector2(0, 0), Vector2(0, 0), 1.989e30)
-# earth = Body(Vector2(149.6e9, 0), Vector2(0, 30e5), 5.972e24)
+    while elapsed_time < simulated_time:
+        # Calculate the resulting gravitational force on each of the bodies and set this property
+        for body in bodies:
+            body.set_resulting_gravitational_force(bodies)
 
-# bodies.append(sun)
-# bodies.append(earth)
+        # Update velocity and position based on the gravitational force calculated
+        for body in bodies:
+            body.update_velocity(body.resulting_force, dt)
+            body.update_position(dt)
 
-init_file(file_path, bodies)
-log_body_positions(file_path, bodies)
+        log_body_positions(output_file_path, bodies)
 
-while elapsed_time < simulated_time:
-    # Calculate the resulting gravitational force on each of the bodies and set this property
-    for body in bodies:
-        body.set_resulting_gravitational_force(bodies)
+        elapsed_time += dt
+        print('Seconds Simulated: {}'.format(elapsed_time))
 
-    # Update velocity and position based on the gravitational force calculated
-    for body in bodies:
-        body.update_velocity(body.resulting_force, dt)
-        body.update_position(dt)
 
-    log_body_positions(file_path, bodies)
+def Main():
+    input_file_path = 'input/2body.txt'
+    output_file_path = 'output/2body.txt'
 
-    elapsed_time += dt
+    simulate(input_file_path, output_file_path)
 
-# plt.plot(a_x, a_y, b_x, b_y)
-# # plt.plot(a_x, a_y, b_x, b_y, c_x, c_y, d_x, d_y)
-# plt.show()
+    x_and_y_lists = get_positions_array_from_file(output_file_path)
+    x_lists = x_and_y_lists[0]
+    y_lists = x_and_y_lists[1]
+    show_graph(x_lists, y_lists)
 
-# Animation
-# def _update_plot(i, fig, scat):
-#     # scat.set_offsets(([0, i], [50, i], [100, i]))
-#     scat.set_offsets(([a_x[i], a_y[i]], [b_x[i], b_y[i]]))
-#     print('Frames: {}'.format(i))
-#     return scat
-#
-# fig = plt.figure()
-#
-# x = [0, 50, 100]
-# y = [0, 0, 0]
-#
-# ax = fig.add_subplot(111)
-# ax.grid(True, linestyle = '-', color = '0.75')
-# ax.set_xlim([-5, 5])
-# ax.set_ylim([-5, 5])
-#
-# scat = plt.scatter(x, y, c = x)
-# scat.set_alpha(0.8)
-#
-# anim = animation.FuncAnimation(fig, _update_plot, fargs = (fig, scat),
-#                               frames = len(a_x), interval = 3)
-#
-# plt.show()
+if __name__ == '__main__':
+    Main()

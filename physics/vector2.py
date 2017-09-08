@@ -6,7 +6,7 @@ class Vector2:
         self.y = y
 
     def __repr__(self):
-         return 'Vector3({}, {})'.format(self.x, self.y)
+         return 'Vector2({}, {})'.format(self.x, self.y)
 
     def __add__(self, other):
         return Vector2(
