@@ -6,8 +6,15 @@ def show_graph(x_list, y_list):
     amount_of_bodies = len(x_list)
     for i in range(amount_of_bodies):
         plt.plot(x_list[i], y_list[i])
-    plt.xlim(-6e7, 6e7)
-    plt.ylim(-5e6, 500000)
+
+    # plt.xlim(-8e7, 8e7)
+    # plt.ylim(-8e7, 8e7)
+
+    # plt.xlim(-300e9, 300e9)
+    # plt.ylim(-300e9, 300e9)
+
+    # plt.xlim(-6e7, 6e7)
+    # plt.ylim(-5e6, 500000)
     # plt.xlim(-5, 5)
     # plt.ylim(-5, 5)
     # plt.xlim(-2.5, 2.5)

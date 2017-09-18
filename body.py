@@ -7,6 +7,7 @@ class Body:
         self.position = position
         self.velocity = velocity
         self.mass = mass
+        self.resulting_force = Vector2(0, 0)
 
     def __repr__(self):
         return 'Body at {} with mass of {}kg'.format(self.position, self.mass)

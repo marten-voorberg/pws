@@ -26,15 +26,16 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
 
         elapsed_time += dt
         percentage = int(elapsed_time / simulated_time * 100)
-        print('Seconds Simulated: {}. {}% done'.format(elapsed_time, percentage))
+        # print(bodies[1].velocity)
+        print('Seconds Simulated: {}. {}% of calculations completed.'.format(elapsed_time, percentage))
 
 
 def main():
     input_file_path = 'input/solarsystem2.txt'
     output_file_path = 'output/solarsystemA.txt'
-    dt = 0.005
+    dt = 100000
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 900 * 10
+    simulated_time = dt * 10000
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 
