@@ -2,6 +2,7 @@ from log import *
 from read_input import get_bodies_from_file
 from read_log import get_positions_array_from_file
 from graph import show_graph
+from scripts.timer_decorator import timer
 
 
 def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
@@ -29,7 +30,7 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
         # print(bodies[1].velocity)
         print('Seconds Simulated: {}. {}% of calculations completed.'.format(elapsed_time, percentage))
 
-
+@timer
 def main():
     input_file_path = 'input/solarsystem2.txt'
     output_file_path = 'output/solarsystemA.txt'
@@ -39,10 +40,10 @@ def main():
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 
-    x_and_y_lists = get_positions_array_from_file(output_file_path)
-    x_lists = x_and_y_lists[0]
-    y_lists = x_and_y_lists[1]
-    show_graph(x_lists, y_lists)
+    # x_and_y_lists = get_positions_array_from_file(output_file_path)
+    # x_lists = x_and_y_lists[0]
+    # y_lists = x_and_y_lists[1]
+    # show_graph(x_lists, y_lists)
 
 if __name__ == '__main__':
     main()
