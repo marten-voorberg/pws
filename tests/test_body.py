@@ -28,7 +28,8 @@ class TestBody(unittest.TestCase):
         position = Vector2(0, 0)
         velocity = Vector2(2, 2)
         body = Body(position, velocity, mass)
-        body.update_velocity(force, dt)
+        body.resulting_force = force
+        body.update_velocity(dt)
         expected_x = 2.3
         expected_y = 2.2
         self.assertTrue(expected_x - body.velocity.x < 10e-5 and expected_y - body.velocity.y < 10e-5)

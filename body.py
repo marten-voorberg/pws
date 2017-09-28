@@ -15,9 +15,9 @@ class Body:
     def update_position(self, dt):
         self.position += self.velocity * dt
 
-    def update_velocity(self, resulting_force, dt):
+    def update_velocity(self, dt):
         # F_res = m / a
-        acceleration = resulting_force / self.mass
+        acceleration = self.resulting_force / self.mass
         delta_velocity = acceleration * dt
         self.velocity += delta_velocity
 

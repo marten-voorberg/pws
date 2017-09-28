@@ -19,7 +19,7 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
 
         # Update velocity and position based on the gravitational force calculated
         for body in bodies:
-            body.update_velocity(body.resulting_force, dt)
+            body.update_velocity(dt)
             body.update_position(dt)
 
         log_body_positions(output_file_path, bodies)
@@ -35,7 +35,7 @@ def main():
     output_file_path = 'output/solarsystemA.txt'
     dt = 100000
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 10000
+    simulated_time = dt * 1000
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 
