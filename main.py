@@ -13,6 +13,9 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
     init_file(output_file_path, bodies)
     log_body_positions(output_file_path, bodies)
 
+    for i in range(len(bodies)):
+        bodies[i].index = i
+
     while elapsed_time < simulated_time:
         # Calculate the resulting gravitational force on each of the bodies and set this property
         for body in bodies:
@@ -27,8 +30,8 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
 
         elapsed_time += dt
         percentage = int(elapsed_time / simulated_time * 100)
-        # print(bodies[1].velocity)
         print('Seconds Simulated: {}. {}% of calculations completed.'.format(elapsed_time, percentage))
+
 
 @timer
 def main():
@@ -36,7 +39,7 @@ def main():
     output_file_path = 'output/solarsystemA.txt'
     dt = 100000
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 1000
+    simulated_time = dt * 100
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 

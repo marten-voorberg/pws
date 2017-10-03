@@ -8,7 +8,11 @@ class Body:
         self.velocity = velocity
         self.mass = mass
         self.resulting_force = Vector2(0, 0)
-        self.gravitational_force_from_other_bodies = {}
+        # The index of this dictionary will be the index of the other body in the body array
+        # The content will be the force from that body
+        self.forces_to_other_bodies = {}
+        # Temporary value which will be replaced later
+        self.index = -1
 
     def __repr__(self):
         return 'Body at {} with mass of {}kg'.format(self.position, self.mass)
@@ -22,9 +26,9 @@ class Body:
         delta_velocity = acceleration * dt
         self.velocity += delta_velocity
 
-    def get_gravitational_force_to(self, other_body, other_body_index):
-        if other_body_index in self.gravitational_force_from_other_bodies and False:
-            return self.gravitational_force_from_other_bodies[other_body_index]
+    def get_gravitational_force_to(self, other_body):
+        if other_body.index in self.forces_to_other_bodies:
+            return self.forces_to_other_bodies[other_body.index]
         else:
             vector_between = other_body.position - self.position
             distance_between = vector_between.get_length()
@@ -33,13 +37,22 @@ class Body:
             magnitude_of_force = calc_gravitational_force(self.mass, other_body.mass, distance_between)
 
             gravitational_force = direction_of_force * magnitude_of_force
-            other_body.gravitational_force_from_other_bodies[other_body_index] = gravitational_force * -1
+
+            # Add calculated gravitational force to 'the forces_to_other_body' dictionary for optimisation
+            other_body.forces_to_other_bodies[self.index] = gravitational_force * -1
             return gravitational_force
 
     def set_resulting_gravitational_force(self, bodies):
         self.resulting_force = Vector2(0, 0)
-        for i in range(len(bodies)):
-            body = bodies[i]
+        for body in bodies:
             if body is not self:
-                self.resulting_force += self.get_gravitational_force_to(body, i)
-                self.gravitational_force_from_other_bodies = {}
+                self.resulting_force += self.get_gravitational_force_to(body)
+        # After we have calculated the resulting force the values in 'forces_to_other_bodies' have been
+        # used and are now outdated so we clear the dictionary to save memory
+        self.forces_to_other_bodies = {}
+
+# Debugging
+if __name__ == '__main__':
+    body1 = Body(Vector2(0, 0), Vector2(0, 0), 10e20)
+    body2 = Body(Vector2(10e10, 0), Vector2(0, 0), 10e20)
+
