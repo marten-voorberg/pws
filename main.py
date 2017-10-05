@@ -3,6 +3,7 @@ from read_input import get_bodies_from_file
 from read_log import get_positions_array_from_file
 from graph import show_graph
 from scripts.timer_decorator import timer
+from physics.vector2 import Vector2
 
 
 def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
@@ -25,6 +26,7 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
         for body in bodies:
             body.update_velocity(dt)
             body.update_position(dt)
+            # body.resulting_force = Vector2(0, 0)
 
         log_body_positions(output_file_path, bodies)
 
@@ -35,11 +37,11 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
 
 @timer
 def main():
-    input_file_path = 'input/solarsystem2.txt'
-    output_file_path = 'output/solarsystemA.txt'
-    dt = 100000
+    input_file_path = 'input/generated1.txt'
+    output_file_path = 'output/generated1.txt'
+    dt = 1000000
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 100
+    simulated_time = dt * 1000
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 

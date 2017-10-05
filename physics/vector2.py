@@ -39,9 +39,15 @@ class Vector2:
 
     # The unit vector of a vector is a vector with the same direction, but with a length of 1
     def get_unitvector(self):
-        return self / self.get_length()
+        length = self.get_length()
+        if length == 0:
+            return self
+        return self / length
 
     # Calculate the distance from this vector to another vector
     def calc_distance_to(self, other_vector):
         vector_between = other_vector - self
         return vector_between.get_length()
+
+    def rotate_90(self):
+        return Vector2(-self.y, self.x)
