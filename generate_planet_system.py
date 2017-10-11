@@ -20,13 +20,24 @@ def get_moon_mass():
 def get_stars(n):
     stars = []
     stars.append(Body(Vector2(0, 0), Vector2(0, 0), get_sun_mass()))
+    # stars.append(Body(Vector2(10e5, 0), Vector2(0, 0), get_sun_mass()))
     return stars
 
 
+def get_distance_to_center(already_used_distances):
+    distance_to_center = random.randrange(50, 1000, 150) * 10e9
+    if distance_to_center in already_used_distances:
+        return get_distance_to_center(already_used_distances)
+    else:
+        already_used_distances.append(distance_to_center)
+        return distance_to_center
+
 def get_planets(n):
     planets = []
+    already_used_distances = []
     for i in range(n):
-        distance_to_center = random.randrange(50, 250) * 10e9
+        # distance_to_center = random.randrange(50, 1000, 150) * 10e9
+        distance_to_center = get_distance_to_center(already_used_distances)
         position = Vector2(distance_to_center, 0)
         mass = get_planet_mass()
         planets.append(Body(position, Vector2(0, 0), mass))
@@ -43,7 +54,7 @@ def write_to_file(bodies, file_path):
             file.write(string)
 
 
-def generate_planet_system(n_stars = 1, n_planets = 3, n_moons = 0):
+def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
     bodies = []
 
     stars = get_stars(n_stars)
@@ -52,11 +63,25 @@ def generate_planet_system(n_stars = 1, n_planets = 3, n_moons = 0):
 
     planets = get_planets(n_planets)
     for planet in planets:
-        planet.velocity(0, 10e9)
         bodies.append(planet)
 
     for body in bodies:
         body.set_resulting_gravitational_force(bodies)
+
+    for body in bodies:
+        force_to_stars = Vector2(0, 0)
+        for star in stars:
+            force_to_stars += body.get_gravitational_force_to(star)
+
+        f_mpz_magnitude = force_to_stars.get_length()
+        distance_to_center = body.position.get_length()
+        velocity_magnitude = math.sqrt((f_mpz_magnitude * distance_to_center) / body.mass)
+        # distance_to_center = body.position.get_length()
+        # # f_mpz = m*v^2 / r
+        # velocity_magnitude = math.sqrt((body.resulting_force.get_length() * distance_to_center) / body.mass)
+        # # f_mpz_magnitude = body.resulting_force.get_length()
+        body.velocity = Vector2(0, velocity_magnitude)
+
 
     # for body in bodies:
     #     f_mpz_magnitude = body.resulting_force.get_length()
@@ -68,4 +93,4 @@ def generate_planet_system(n_stars = 1, n_planets = 3, n_moons = 0):
 
 if __name__ == '__main__':
     bodies = generate_planet_system()
-    write_to_file(bodies, 'input/generated1.txt')
+    write_to_file(bodies, 'input/generated3.txt')

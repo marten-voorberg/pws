@@ -37,9 +37,9 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
 
 @timer
 def main():
-    input_file_path = 'input/generated1.txt'
-    output_file_path = 'output/generated1.txt'
-    dt = 1000000
+    input_file_path = 'input/generated3.txt'
+    output_file_path = 'output/generated3.txt'
+    dt = 500000
     # simulated_time = dt * 433 * 2 + 1
     simulated_time = dt * 1000
 
