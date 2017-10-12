@@ -24,6 +24,10 @@ def get_stars(n):
     return stars
 
 
+def get_random_angle_in_degrees():
+    return random.randrange(0, 360, 1)
+
+
 def get_distance_to_center(already_used_distances):
     distance_to_center = random.randrange(50, 1000, 150) * 10e9
     if distance_to_center in already_used_distances:
@@ -82,6 +86,11 @@ def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
         # # f_mpz_magnitude = body.resulting_force.get_length()
         body.velocity = Vector2(0, velocity_magnitude)
 
+    # Rotate planets to a random degree
+    for planet in planets:
+        random_angle = get_random_angle_in_degrees()
+        planet.position = planet.position.rotate_deg(random_angle)
+        planet.velocity = planet.velocity.rotate_deg(random_angle)
 
     # for body in bodies:
     #     f_mpz_magnitude = body.resulting_force.get_length()
@@ -93,4 +102,4 @@ def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
 
 if __name__ == '__main__':
     bodies = generate_planet_system()
-    write_to_file(bodies, 'input/generated3.txt')
+    write_to_file(bodies, 'input/generated4.txt')

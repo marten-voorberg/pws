@@ -1,4 +1,5 @@
 import unittest
+import math
 from physics.vector2 import Vector2
 
 
@@ -55,3 +56,21 @@ class TestVector2(unittest.TestCase):
         actual = v1.calc_distance_to(v2)
         expected = 1.41421356237
         self.assertAlmostEqual(actual, expected)
+
+    def test_rotate_rad_1(self):
+        v = Vector2(4, 0)
+        actual = v.rotate_rad(0.5 * math.pi)
+        expected = Vector2(0, 4)
+        self.assertTrue(abs(actual.x - expected.x) < 10e-5 and abs(actual.y - expected.y) < 10e-5)
+
+    def test_rotate_rad_2(self):
+        v = Vector2(-4, -4)
+        actual = v.rotate_rad(0.75 * math.pi)
+        expected = Vector2(5.656854, 0)
+        self.assertTrue(abs(actual.x - expected.x) < 10e-5 and abs(actual.y - expected.y) < 10e-5)
+
+    def test_rotate_deg(self):
+        v = Vector2(4, 0)
+        actual = v.rotate_deg(90)
+        expected = Vector2(0, 4)
+        self.assertTrue(abs(actual.x - expected.x) < 10e-5 and abs(actual.y - expected.y) < 10e-5)

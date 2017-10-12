@@ -23,7 +23,7 @@ def show_graph(x_list, y_list):
 
 
 def main():
-    filepath = 'output/generated3.txt'
+    filepath = 'output/generated4.txt'
     x_and_y_lists = get_positions_array_from_file(filepath)
     x_lists = x_and_y_lists[0]
     y_lists = x_and_y_lists[1]

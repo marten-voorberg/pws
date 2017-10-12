@@ -51,3 +51,14 @@ class Vector2:
 
     def rotate_90(self):
         return Vector2(-self.y, self.x)
+
+    def rotate_rad(self, angle):
+        cos = math.cos(angle)
+        sin = math.sin(angle)
+        x_component = self.x * cos - self.y * sin
+        y_component = self.x * sin + self.y * cos
+        return Vector2(x_component, y_component)
+
+    def rotate_deg(self, angle):
+        angle_in_rad = (angle / 180) * math.pi
+        return self.rotate_rad(angle_in_rad)
