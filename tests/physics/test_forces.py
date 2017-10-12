@@ -19,3 +19,12 @@ class TestGravitationalForce(unittest.TestCase):
         actual = calc_gravitational_force(mass1, mass2, distance)
         self.assertAlmostEqual(actual, expected)
 
+
+class TestFMpz(unittest.TestCase):
+    def test(self):
+        f_mpz = 6
+        distance = 3
+        mass = 2
+        actual_velocity = calc_velocity_with_f_mpz(f_mpz, mass, distance)
+        expected_velocity = 3
+        self.assertAlmostEqual(actual_velocity, expected_velocity)

@@ -1,5 +1,6 @@
 from body import Body
 from physics.vector2 import Vector2
+from physics.forces import calc_velocity_with_f_mpz
 from log import get_minimal_str_of_vector2
 import random
 import math
@@ -79,7 +80,8 @@ def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
 
         f_mpz_magnitude = force_to_stars.get_length()
         distance_to_center = body.position.get_length()
-        velocity_magnitude = math.sqrt((f_mpz_magnitude * distance_to_center) / body.mass)
+        velocity_magnitude = calc_velocity_with_f_mpz(f_mpz_magnitude, body.mass, distance_to_center)
+        # velocity_magnitude = math.sqrt((f_mpz_magnitude * distance_to_center) / body.mass)
         # distance_to_center = body.position.get_length()
         # # f_mpz = m*v^2 / r
         # velocity_magnitude = math.sqrt((body.resulting_force.get_length() * distance_to_center) / body.mass)
