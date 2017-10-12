@@ -1,11 +1,10 @@
 import math
-import matplotlib.pyplot as plt
 import random
 # TODO: RENAME THIS FILE
 
 
 class SemiRandomizer:
-    def __init__(self, input_file_path, amount_of_slices=1000):
+    def __init__(self, input_file_path, amount_of_slices):
         self.amount_of_slices = amount_of_slices
         self.slice_index_and_occurrences = {}
 
@@ -135,7 +134,7 @@ if __name__ == '__main__':
 #
 # if __name__ == '__main__':
 #     # dict = f('input/exoplanet_masses.txt')
-#     dict = f('input/simple.txt', 3)
+#     dict = f('input/semi_randomizer_test_file.txt', 3)
 #
 #     temp_dict = {}
 #     for i in range(10000):
