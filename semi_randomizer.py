@@ -4,7 +4,7 @@ import random
 # TODO: RENAME THIS FILE
 
 
-class SemiRandomizer():
+class SemiRandomizer:
     def __init__(self, input_file_path, amount_of_slices=1000):
         self.amount_of_slices = amount_of_slices
         self.slice_index_and_occurrences = {}
@@ -53,15 +53,15 @@ class SemiRandomizer():
             if random_number < counter:
                 return key
 
-    def get_mass(self, slice_index):
+    def get_mass_from_index(self, slice_index):
         return self.lowest_mass + (slice_index + 0.5) * self.slice_size
 
     def get_semi_random_mass(self):
         slice_index = self.get_semi_random_slice_index()
-        return self.get_mass(slice_index)
+        return self.get_mass_from_index(slice_index)
 
 if __name__ == '__main__':
-    sr = SemiRandomizer('input/simple.txt', 3)
+    sr = SemiRandomizer('input/exoplanet_masses_kg.txt', 100)
     # print(sr.get_mass(1))
     temp_dict = {}
     for i in range(100000):
