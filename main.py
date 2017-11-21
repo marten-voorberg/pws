@@ -37,11 +37,11 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
 
 @timer
 def main():
-    input_file_path = 'input/generated5.txt'
-    output_file_path = 'output/generated5.txt'
+    input_file_path = 'input/our_solarsystem.txt'
+    output_file_path = 'output/out_solarsystem.txt'
     dt = 500000
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 10000
+    simulated_time = dt * 2000
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 
