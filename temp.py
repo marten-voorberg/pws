@@ -1,7 +1,12 @@
-from read_log import *
-from graph import *
-from animation import *
+import matplotlib.pyplot as plt
+from generators.black_hole_system import generate_system
 
-result = get_positions_array_from_file('output/4body2.txt')
-# show_graph(result[0], result[1])
-show_animation(result[0], result[1])
+if __name__ == '__main__':
+    stars = generate_system(1000)
+    x_list = []
+    y_list = []
+    for star in stars:
+        x_list.append(star.position.x)
+        y_list.append(star.position.y)
+    plt.plot(x_list, y_list, 'o')
+    plt.show()
