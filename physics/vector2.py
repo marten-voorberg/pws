@@ -62,3 +62,6 @@ class Vector2:
     def rotate_deg(self, angle):
         angle_in_rad = (angle / 180) * math.pi
         return self.rotate_rad(angle_in_rad)
+
+    def get_minimal_string(self):
+        return '{},{}'.format(self.x, self.y)

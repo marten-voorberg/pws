@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from read_log import get_positions_array_from_file
+from plotting.distance_velocity import plot
 
 
 def show_graph(x_list, y_list):
@@ -7,8 +8,8 @@ def show_graph(x_list, y_list):
     for i in range(amount_of_bodies):
         plt.plot(x_list[i], y_list[i])
 
-    # plt.xlim(-8e7, 8e7)
-    # plt.ylim(-8e7, 8e7)
+    # plt.xlim(-10e8, 10e8)
+    # plt.ylim(-10e8, 10e8)
 
     # plt.xlim(-300e9, 300e9)
     # plt.ylim(-300e9, 300e9)
@@ -23,11 +24,13 @@ def show_graph(x_list, y_list):
 
 
 def main():
-    filepath = 'output/generated5.txt'
-    x_and_y_lists = get_positions_array_from_file(filepath)
-    x_lists = x_and_y_lists[0]
-    y_lists = x_and_y_lists[1]
-    show_graph(x_lists, y_lists)
+    # file_path = 'output/generated_star_system2.txt'
+    # x_and_y_lists = get_positions_array_from_file(file_path)
+    # x_lists = x_and_y_lists[0]
+    # y_lists = x_and_y_lists[1]
+    # show_graph(x_lists, y_lists)
+
+    plot('output/distance_velocity_2')
 
 if __name__ == '__main__':
     main()

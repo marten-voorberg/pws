@@ -12,7 +12,7 @@ def get_star_mass():
 
 
 def get_black_hole_mass():
-    return 10e100
+    return 10e50
 
 
 def get_random_distance():
@@ -57,10 +57,9 @@ def generate_system(star_amount):
             distance = vector_between_star_and_black_hole.get_length()
             gravitational_force = star.get_gravitational_force_to(black_hole)
             gravitational_magnitude = gravitational_force.get_length()
-            # print(gravitational_force)
-            # print(star.mass)
-            # print(distance)
+            print('gravitational force magnitude: {}'.format(gravitational_magnitude))
             velocity_magnitude = calc_velocity_with_f_mpz(gravitational_magnitude, star.mass, distance)
+            print('velocity force magnitude: {}'.format(velocity_magnitude))
 
             force_direction = vector_between_star_and_black_hole.get_unitvector()
             # The starting velocity will be perpendicular to the direction of the force

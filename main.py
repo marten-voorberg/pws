@@ -4,6 +4,7 @@ from read_log import get_positions_array_from_file
 from graph import show_graph
 from scripts.timer_decorator import timer
 from physics.vector2 import Vector2
+from file_manipulation.distance_velocity import write_distance_and_velocity_to_file
 
 
 def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
@@ -34,14 +35,17 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
         percentage = int(elapsed_time / simulated_time * 100)
         print('Seconds Simulated: {}. {}% of calculations completed.'.format(elapsed_time, percentage))
 
+    # Write velocity and distance to center to file
+    write_distance_and_velocity_to_file(bodies, 'output/distance_velocity_2')
+
 
 @timer
 def main():
-    input_file_path = 'input/our_solarsystem.txt'
-    output_file_path = 'output/out_solarsystem.txt'
-    dt = 500000
+    input_file_path = 'input/generated_star_system3.txt'
+    output_file_path = 'output/generated_star_system3.txt'
+    dt = 0.1
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 2000
+    simulated_time = dt * 1000
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 
