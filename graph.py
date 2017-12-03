@@ -11,8 +11,8 @@ def show_graph(x_list, y_list):
     # plt.xlim(-10e8, 10e8)
     # plt.ylim(-10e8, 10e8)
 
-    # plt.xlim(-300e9, 300e9)
-    # plt.ylim(-300e9, 300e9)
+    # plt.xlim(-150e9, 150e9)
+    # plt.ylim(-150e9, 150e9)
 
     # plt.xlim(-6e7, 6e7)
     # plt.ylim(-5e6, 500000)
@@ -24,13 +24,13 @@ def show_graph(x_list, y_list):
 
 
 def main():
-    # file_path = 'output/generated_star_system2.txt'
-    # x_and_y_lists = get_positions_array_from_file(file_path)
-    # x_lists = x_and_y_lists[0]
-    # y_lists = x_and_y_lists[1]
-    # show_graph(x_lists, y_lists)
+    file_path = 'output/generated10101.txt'
+    x_and_y_lists = get_positions_array_from_file(file_path)
+    x_lists = x_and_y_lists[0]
+    y_lists = x_and_y_lists[1]
+    show_graph(x_lists, y_lists)
 
-    plot('output/distance_velocity_2')
+    # plot('output/distance_velocity_2')
 
 if __name__ == '__main__':
     main()

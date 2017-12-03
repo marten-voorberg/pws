@@ -61,7 +61,7 @@ def write_to_file(bodies, file_path):
             file.write(string)
 
 
-def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
+def generate_system(n_stars = 1, n_planets = 5, n_moons = 0):
     planet_mass_semi_randomizer = SemiRandomizer('input/exoplanet_masses_kg.txt', 100)
     bodies = []
 
@@ -69,7 +69,14 @@ def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
     for star in stars:
         bodies.append(star)
 
-    planets = get_planets(n_planets, planet_mass_semi_randomizer)
+    # planets = get_planets(n_planets, planet_mass_semi_randomizer)
+    planets = [
+        Body(Vector2(108e9, 0), Vector2(0, 0), 4.867e24),
+        Body(Vector2(149.6e9, 0), Vector2(0, 0), 5.972e24),
+        Body(Vector2(227e9, 0), Vector2(0, 0), 5.972e23),
+        Body(Vector2(778.5e9, 0), Vector2(0, 0), 0.898e27),
+        Body(Vector2(1.429e11, 0), Vector2(0, 0), 5.683e26)
+    ]
     for planet in planets:
         bodies.append(planet)
 
@@ -106,5 +113,5 @@ def generate_planet_system(n_stars = 1, n_planets = 5, n_moons = 0):
     return bodies
 
 if __name__ == '__main__':
-    bodies = generate_planet_system()
-    write_to_file(bodies, 'input/generated5.txt')
+    bodies = generate_system()
+    write_to_file(bodies, 'input/generated100.txt')

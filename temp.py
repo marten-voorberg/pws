@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
-from generators.black_hole_system import generate_system
+from generators.our_planet_system import generate_system
 from file_manipulation.input_file import write_bodies_to_input_file
 
 if __name__ == '__main__':
-    bodies = generate_system(100)
-    file_path = 'input/generated_star_system3.txt'
+    bodies = generate_system()
+    file_path = 'input/generated10101.txt'
     write_bodies_to_input_file(bodies, file_path)
     x_list = []
     y_list = []

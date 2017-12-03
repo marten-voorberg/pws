@@ -101,6 +101,7 @@ class Body:
 
 # Debugging
 if __name__ == '__main__':
-    body1 = Body(Vector2(0, 0), Vector2(0, 0), 10e20)
-    body2 = Body(Vector2(10e10, 0), Vector2(0, 0), 10e20)
+    a = Body(Vector2(10e5, 0), Vector2(0, 0), 1.989e30)
+    b = Body(Vector2(-10e5, 0), Vector2(0, 0), 1.989e30)
+    print(b.get_gravitational_force_to(a).get_length())
 
