@@ -11,20 +11,16 @@ def get_star_mass():
     return 1.989e30
 
 
-def get_black_hole_mass():
-    return 10e50
-
-
 def get_random_distance():
     base = random.randrange(250, 1000, 10)
-    return base * 10e10
+    return base * 10e12
 
 
 def get_black_hole():
     # The black hole will always be in the center and will not be moving
     position = Vector2(0, 0)
     velocity = Vector2(0, 0)
-    mass = get_black_hole_mass()
+    mass = 10e35
     return Body(position, velocity, mass)
 
 
@@ -57,9 +53,7 @@ def generate_system(star_amount):
             distance = vector_between_star_and_black_hole.get_length()
             gravitational_force = star.get_gravitational_force_to(black_hole)
             gravitational_magnitude = gravitational_force.get_length()
-            print('gravitational force magnitude: {}'.format(gravitational_magnitude))
             velocity_magnitude = calc_velocity_with_f_mpz(gravitational_magnitude, star.mass, distance)
-            print('velocity force magnitude: {}'.format(velocity_magnitude))
 
             force_direction = vector_between_star_and_black_hole.get_unitvector()
             # The starting velocity will be perpendicular to the direction of the force

@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
-from generators.our_planet_system import generate_system
+from generators.constant_speed_black_hole_system import generate_system
 from file_manipulation.input_file import write_bodies_to_input_file
 
 if __name__ == '__main__':
-    bodies = generate_system()
-    file_path = 'input/generated10101.txt'
+    bodies = generate_system(100)
+    file_path = 'input/black_hole_constant.txt'
     write_bodies_to_input_file(bodies, file_path)
     x_list = []
     y_list = []
@@ -12,4 +12,4 @@ if __name__ == '__main__':
         x_list.append(star.position.x)
         y_list.append(star.position.y)
     plt.plot(x_list, y_list, 'o')
-    # plt.show()
+    plt.show()

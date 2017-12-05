@@ -18,6 +18,8 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
     for i in range(len(bodies)):
         bodies[i].index = i
 
+    write_distance_and_velocity_to_file(bodies, 'output/distance_and_velocity_before.txt')
+
     while elapsed_time < simulated_time:
         # Calculate the resulting gravitational force on each of the bodies and set this property
         for body in bodies:
@@ -36,16 +38,17 @@ def simulate(input_file_path, output_file_path, dt=0.01, simulated_time=10):
         print('Seconds Simulated: {}. {}% of calculations completed.'.format(elapsed_time, percentage))
 
     # Write velocity and distance to center to file
-    write_distance_and_velocity_to_file(bodies, 'output/distance_velocity_2')
+    write_distance_and_velocity_to_file(bodies, 'output/distance_and_velocity_after.txt')
 
 
 @timer
 def main():
-    input_file_path = 'input/generated10101.txt'
-    output_file_path = 'output/generated10101.txt'
-    dt = 86400
+    input_file_path = 'input/black_hole_constant.txt'
+    output_file_path = 'output/black_hole_constant.txt'
+    # dt = 86400
+    dt = 10e7
     # simulated_time = dt * 433 * 2 + 1
-    simulated_time = dt * 350
+    simulated_time = dt * 2500
 
     simulate(input_file_path, output_file_path, dt, simulated_time)
 
